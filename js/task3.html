@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <h2>1st Number: <input type="number" id="num1"></h2>
+    <h2>2nd Number: <input type="number" id="num2"></h2>
+    <button onclick="calculate('multiply')">Multiply</button>
+    <button onclick="calculate('divide')">Divide</button>
+    <h3>The Result Is:</h3>
+    <p id="result"></p>
+
+    <script>
+        function calculate(operation) {
+            let number1 = parseFloat(document.getElementById("num1").value);
+            let number2 = parseFloat(document.getElementById("num2").value);
+            let result;
+
+            if (operation === 'multiply') {
+                result = number1 * number2;
+            } else if (operation === 'divide') {
+                if (number2 === 0) {
+                    result = "Cannot divide by zero";
+                } else {
+                    result = number1 / number2;
+                }
+            }
+
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Animation</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #train {
+            position: relative;
+            left: 0;
+            transition: left 0.1s linear;
+        }
+        h2 {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <img id="train" src="../../rr058004_American.jpeg" width="300">
+    <h2>Click the following buttons to handle animation</h2>
+    <button onclick="startTrain()">Start</button>
+    <button onclick="stopTrain()">Stop</button>
+
+    <script>
+        let train = document.getElementById("train");
+        let position = 0;
+        let animation;
+
+        function startTrain() {
+            if (!animation) {
+                animation = setInterval(() => {
+                    position += 5; // Move train forward
+                    train.style.left = position + "px";
+                    if (position > window.innerWidth) {
+                        position = -300; // Reset position
+                    }
+                }, 50);
+            }
+        }
+
+        function stopTrain() {
+            clearInterval(animation);
+            animation = null;
+        }
+    </script>
+</body>
+</html>

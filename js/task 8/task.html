@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="task.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <label>First Name</label>
+            <input type="text" id="firstName">
+            <span class="error" id="firstNameError">POOR</span>
+
+            <label>Last Name</label>
+            <input type="text" id="lastName">
+            <span class="error" id="lastNameError">POOR</span>
+
+            <label>Email</label>
+            <input type="email" id="email">
+            <span class="error" id="emailError">POOR</span>
+
+            <label>Password</label>
+            <input type="password" id="password">
+            <span class="error" id="passwordError">POOR</span>
+
+            <label>Re-enter Password</label>
+            <input type="password" id="confirmPassword">
+            <span class="error" id="confirmPasswordError">POOR OR MISMATCH</span>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+
+            <label>Age</label>
+            <input type="number" id="age">
+            <span class="error" id="ageError">POOR</span>
+
+            <label>Phone Number</label>
+            <input type="text" id="phone">
+            <span class="error" id="phoneError">POOR</span>
+
+            <label>Address</label>
+            <textarea id="address"></textarea>
+            <span class="error" id="addressError">POOR</span>
+
+            <label>State</label>
+            <input type="text" id="state">
+            <span class="error" id="stateError">POOR</span>
+
+            <label>Country</label>
+            <select id="country">
+                <option value="">Choose your country</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+            </select>
+
+            <label>Languages known</label>
+            <input type="checkbox"> English
+            <input type="checkbox"> Kannada
+            <input type="checkbox"> Hindi
+            <input type="checkbox"> Telugu
+
+            <label>
+                <input type="checkbox" id="terms"> I declare all the given details are true.
+            </label>
+
+            <button type="submit">REGISTER</button>
+        </form>
+    </div>
+
+    <script src="task.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .blue { background-color: blue; }
+        .green { background-color: green; }
+        .gray { background-color: gray; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to User Management</h1>
+    <button class="blue" onclick="showForm()">Register a User</button>
+    <button class="green" onclick="showUsers()">View Registered Users</button>
+
+    <div id="userForm" style="display:none;" class="container">
+        <h2>User Registration</h2>
+        <input type="text" id="name" placeholder="Name"><br><br>
+        <input type="email" id="email" placeholder="Email"><br><br>
+        <input type="text" id="contact" placeholder="Contact"><br><br>
+        <input type="text" id="address" placeholder="Address"><br><br>
+        <button class="blue" onclick="registerUser()">Register</button>
+        <button class="gray" onclick="showUsers()">View Registered Users</button>
+    </div>
+
+    <div id="userTable" style="display:none;" class="container">
+        <h2>Registered Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="userList"></tbody>
+        </table>
+        <button class="blue" onclick="showForm()">Register More Users</button>
+    </div>
+
+    <script>
+        function showForm() {
+            document.getElementById("userForm").style.display = "block";
+            document.getElementById("userTable").style.display = "none";
+        }
+        
+        function showUsers() {
+            document.getElementById("userForm").style.display = "none";
+            document.getElementById("userTable").style.display = "block";
+            loadUsers();
+        }
+        
+        function registerUser() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let contact = document.getElementById("contact").value;
+            let address = document.getElementById("address").value;
+            
+            if (!name || !email || !contact || !address) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push({ name, email, contact, address });
+            localStorage.setItem("users", JSON.stringify(users));
+            alert("User Registered Successfully!");
+            document.getElementById("userForm").reset();
+            showUsers();
+        }
+        
+        function loadUsers() {
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let tableBody = document.getElementById("userList");
+            tableBody.innerHTML = "";
+            users.forEach(user => {
+                let row = `<tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.contact}</td>
+                    <td>${user.address}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>
